@@ -18,5 +18,6 @@ namespace WebAppFicha.Models
         public string Estado { get; set; }
         public int EstudanteId { get; set; }//FK
         public Estudante Estudante { get; set; } // Propriedade de Navegaçao
+
     }
 }
