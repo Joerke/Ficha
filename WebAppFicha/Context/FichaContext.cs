@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 using WebAppFicha.Models;
+using WebAppFicha.Models.Configuration;
 
 namespace WebAppFicha.Context
 {
@@ -25,31 +27,14 @@ namespace WebAppFicha.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
-            // aki esta mudando o nome da classe
-            modelBuilder.Entity<Curso>().ToTable("TabelaCurso");
-            modelBuilder.Entity<Endereco>().ToTable("TabelaEndereço");
-            modelBuilder.Entity<Estudante>().ToTable("TabelaEstudante");
-            modelBuilder.Entity<NivelEnsino>().ToTable("TabelaNivelEnsino");
-            modelBuilder.Entity<Professor>().ToTable("TabaleProfessor");
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
-            //aki esta colocando essas propriedades como NOT NULL (Obrigatorio)
-            modelBuilder.Entity<Curso>().Property(x => x.CursoNome).IsRequired();
-            modelBuilder.Entity<Professor>().Property(x => x.ProfessorNome).IsRequired();
-            modelBuilder.Entity<Professor>().Property(x => x.TipoProfessor).IsRequired();
-            modelBuilder.Entity<NivelEnsino>().Property(x => x.Descricao).IsRequired();
-            modelBuilder.Entity<Estudante>().Property(x => x.EstudanteNome).IsRequired();
-            modelBuilder.Entity<Estudante>().Property(x => x.DataDeNascimento).IsRequired();
-            modelBuilder.Entity<Estudante>().Property(x => x.Altura).IsRequired();
-            modelBuilder.Entity<Estudante>().Property(x => x.Peso).IsRequired();
-            modelBuilder.Entity<Endereco>().Property(x => x.Endereco1).IsRequired();
-            modelBuilder.Entity<Endereco>().Property(x => x.Endereco2).IsRequired();
-            modelBuilder.Entity<Endereco>().Property(x => x.Cidade).IsRequired();
-            modelBuilder.Entity<Endereco>().Property(x => x.Cep).IsRequired();
-            modelBuilder.Entity<Endereco>().Property(x => x.Estado).IsRequired();
-
-
-
-
+            modelBuilder.Configurations.Add(new ConfiguracaoNivelEnsino());
+            modelBuilder.Configurations.Add(new ConfiguracaoProfessor());
+            modelBuilder.Configurations.Add(new ConfiguracaoEstudante());
+            modelBuilder.Configurations.Add(new ConfiguracaoCurso());
 
 
 

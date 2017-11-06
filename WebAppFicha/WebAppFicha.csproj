@@ -198,6 +198,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Configuration\ConfiguracaoCurso.cs" />
+    <Compile Include="Models\Configuration\ConfiguracaoEndereco.cs" />
+    <Compile Include="Models\Configuration\ConfiguracaoEstudante.cs" />
+    <Compile Include="Models\Configuration\ConfiguracaoNivelEnsino.cs" />
+    <Compile Include="Models\Configuration\ConfiguracaoProfessor.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Estudante.cs" />
